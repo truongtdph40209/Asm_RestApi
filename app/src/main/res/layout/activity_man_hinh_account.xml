@@ -90,6 +90,14 @@
                 android:text="Complete your profile"
                 android:layout_marginTop="40dp"
                 android:textColor="#FFF" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_dangxuat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_custom"
+                android:text="đăng xuất"
+                android:layout_marginTop="10dp"
+                android:textColor="#FFF" />
         </LinearLayout>
 
     </LinearLayout>
