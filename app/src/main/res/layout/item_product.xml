@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fruits1"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:id="@+id/txt_tensp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fresh Orange"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/txt_luuluong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#7E7B7B"
+            android:text="500 gm."
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_gia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="14.29$"
+            android:textStyle="bold"
+            android:textSize="28dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addcart"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:text="add to cart"
+            android:textColor="@color/black"
+            android:background="@drawable/custom_button_cart"
+            />
+
+
+        
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
