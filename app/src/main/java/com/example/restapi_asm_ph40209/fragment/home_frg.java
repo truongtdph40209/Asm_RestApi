@@ -73,18 +73,18 @@ public class home_frg extends Fragment {
     private List<product> getListProduct() {
         List<product> list = new ArrayList<>();
 
-        list.add(new product(1, R.drawable.fruits1, "San pham 1", 500, 14.29, "ahdshdsuhdushdu", product.TYPE_1));
-        list.add(new product(2, R.drawable.fruits2, "San pham 2", 500, 14.29, "ahdshdsuhdushdu", product.TYPE_1));
-        list.add(new product(3, R.drawable.fruits3, "San pham 3", 500, 14.29, "ahdshdsuhdushdu", product.TYPE_1));
-        list.add(new product(4, R.drawable.fruits4, "San pham 4", 500, 14.29, "ahdshdsuhdushdu", product.TYPE_1));
+        list.add(new product(1, R.drawable.fruits1, "San pham 1", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
+        list.add(new product(2, R.drawable.fruits2, "San pham 2", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
+        list.add(new product(3, R.drawable.fruits3, "San pham 3", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
+        list.add(new product(4, R.drawable.fruits4, "San pham 4", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
 
-        list.add(new product(5, R.drawable.vegetables1, "San pham 5", 400, 15.29, "ahdshdsuhdushdu", product.TYPE_2));
-        list.add(new product(6, R.drawable.vegetables2, "San pham 6", 400, 15.29, "ahdshdsuhdushdu", product.TYPE_2));
-        list.add(new product(7, R.drawable.vegetables3, "San pham 7", 400, 15.29, "ahdshdsuhdushdu", product.TYPE_2));
-        list.add(new product(8, R.drawable.vegetables4, "San pham 8", 400, 15.29, "ahdshdsuhdushdu", product.TYPE_2));
+        list.add(new product(5, R.drawable.vegetables1, "San pham 5", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
+        list.add(new product(6, R.drawable.vegetables2, "San pham 6", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
+        list.add(new product(7, R.drawable.vegetables3, "San pham 7", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
+        list.add(new product(8, R.drawable.vegetables4, "San pham 8", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
 
-        list.add(new product(9, R.drawable.bestdeal1, "San pham 9", 450, 16.29, "ahdshdsuhdushdu", product.TYPE_3));
-        list.add(new product(10, R.drawable.bestdeal2, "San pham 10", 450, 16.29, "ahdshdsuhdushdu", product.TYPE_3));
+        list.add(new product(9, R.drawable.bestdeal1, "San pham 9", 450, 16.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_3));
+        list.add(new product(10, R.drawable.bestdeal2, "San pham 10", 450, 16.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_3));
 
         return list;
     }
