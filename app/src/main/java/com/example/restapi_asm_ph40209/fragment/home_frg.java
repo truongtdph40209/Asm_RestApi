@@ -61,7 +61,7 @@ public class home_frg extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rcv_product.setLayoutManager(gridLayoutManager);
 
-        ProductAdapter adapter = new ProductAdapter(getListProduct());
+        ProductAdapter adapter = new ProductAdapter(getListProduct(), getContext());
 
         rcv_product.setAdapter(adapter);
 

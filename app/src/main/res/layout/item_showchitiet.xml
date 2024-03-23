@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    >
+    <LinearLayout
+        android:background="@color/white"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="550dp">
+        <LinearLayout
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:padding="0dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_yeuthich"
+                android:background="#FFF"
+                />
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_marginLeft="20dp"
+                android:padding="0dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_x"
+                android:background="#FFF"
+                />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/img_chitiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fruits1"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tensp_chitiet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Organic Spinach"
+                android:textSize="32dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/gia_chitiet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="14.29$"
+                android:textColor="@color/black"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/danhgia"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.0 . 98 reviews"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/luuluong_chitiet"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500 mg."/>
+
+
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/desc_chitiet"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssdsd"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            />
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_tang"
+                android:padding="0dp"
+                android:background="#FFF"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01"
+                android:textSize="18dp"
+                android:layout_marginHorizontal="20dp"
+                />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_giam"
+                android:padding="0dp"
+                android:background="#FFF"
+
+                />
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_custom"
+            android:layout_marginTop="20dp"
+            android:text="add to cart"
+            android:textColor="#FFF"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
