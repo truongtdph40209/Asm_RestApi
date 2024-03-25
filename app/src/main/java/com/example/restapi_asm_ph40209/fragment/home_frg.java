@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.restapi_asm_ph40209.R;
+import com.example.restapi_asm_ph40209.adapter.CategoryAdapter;
 import com.example.restapi_asm_ph40209.adapter.ProductAdapter;
 import com.example.restapi_asm_ph40209.man_hinh_account;
+import com.example.restapi_asm_ph40209.model.category;
 import com.example.restapi_asm_ph40209.model.product;
 
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class home_frg extends Fragment {
     private ImageView btn_account;
 
     private RecyclerView rcv_product;
+    private RecyclerView rcv_category;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +60,8 @@ public class home_frg extends Fragment {
         });
 
         rcv_product = view.findViewById(R.id.rcv_product);
-//        rcv_product.setNestedScrollingEnabled(false);
+
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rcv_product.setLayoutManager(gridLayoutManager);
@@ -66,26 +71,51 @@ public class home_frg extends Fragment {
         rcv_product.setAdapter(adapter);
 
 
+        rcv_category = view.findViewById(R.id.rcv_category);
+        rcv_category.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getListItemcate());
+        rcv_category.setAdapter(categoryAdapter);
 
         return view;
     }
 
     private List<product> getListProduct() {
-        List<product> list = new ArrayList<>();
+        List<product> listPr = new ArrayList<>();
 
-        list.add(new product(1, R.drawable.fruits1, "San pham 1", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
-        list.add(new product(2, R.drawable.fruits2, "San pham 2", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
-        list.add(new product(3, R.drawable.fruits3, "San pham 3", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
-        list.add(new product(4, R.drawable.fruits4, "San pham 4", 500, 14.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_1));
+        listPr.add(new product(R.drawable.fruits1,"1" , "San pham 1", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
+        listPr.add(new product(R.drawable.fruits2,"2" , "San pham 2", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
+        listPr.add(new product(R.drawable.fruits3,"3" , "San pham 3", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
+        listPr.add(new product(R.drawable.fruits4,"4" , "San pham 4", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
 
-        list.add(new product(5, R.drawable.vegetables1, "San pham 5", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
-        list.add(new product(6, R.drawable.vegetables2, "San pham 6", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
-        list.add(new product(7, R.drawable.vegetables3, "San pham 7", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
-        list.add(new product(8, R.drawable.vegetables4, "San pham 8", 400, 15.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_2));
+        listPr.add(new product(R.drawable.vegetables1,"5" , "San pham 5", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
+        listPr.add(new product(R.drawable.vegetables2,"6" , "San pham 6", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
+        listPr.add(new product(R.drawable.vegetables3,"7" , "San pham 7", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
+        listPr.add(new product(R.drawable.vegetables4,"8" , "San pham 8", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
 
-        list.add(new product(9, R.drawable.bestdeal1, "San pham 9", 450, 16.29, "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", product.TYPE_3));
-        list.add(new product(10, R.drawable.bestdeal2, "San pham 10", 450, 16.29, "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy ", product.TYPE_3));
+        listPr.add(new product(R.drawable.bestdeal1,"9" , "San pham 9", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
+        listPr.add(new product(R.drawable.bestdeal2,"10" , "San pham 10", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
 
-        return list;
+
+        return listPr;
     }
+
+    private ArrayList<category> getListItemcate() {
+        ArrayList<category> listCate = new ArrayList<>();
+
+        listCate.add(new category("1", "All"));
+        listCate.add(new category("2", "Vegetables1"));
+        listCate.add(new category("3", "Fruits"));
+        listCate.add(new category("4", "Meats"));
+        listCate.add(new category("5", "Deals"));
+        listCate.add(new category("6", "Best Seller"));
+
+
+
+        return listCate;
+
+    }
+
+
+
 }

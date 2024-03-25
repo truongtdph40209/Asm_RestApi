@@ -43,6 +43,8 @@ dependencies {
 
     implementation ("com.google.android.material:material:1.12.0-alpha03")
 
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
 
 
 

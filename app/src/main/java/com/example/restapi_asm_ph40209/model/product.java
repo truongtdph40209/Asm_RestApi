@@ -2,38 +2,25 @@ package com.example.restapi_asm_ph40209.model;
 
 public class product {
 
-    public static final int TYPE_1 = 1;
-    public static final int TYPE_2 = 2;
-    public static final int TYPE_3 = 3;
-
-    private int id;
     private int image;
-    private String tensp;
-    private int luuluong;
-    private double gia;
-    private String desc;
-    private int type;
+
+    private String ProductId;
+    private String ProductName;
+    private String Desc;
+    private double Price;
+    private String CateId;
 
 
-    public product() {
-    }
-
-    public product(int id, int image, String tensp, int luuluong, double gia, String desc, int type) {
-        this.id = id;
+    public product(int image, String productId, String productName, String desc, double price) {
         this.image = image;
-        this.tensp = tensp;
-        this.luuluong = luuluong;
-        this.gia = gia;
-        this.desc = desc;
-        this.type = type;
+        ProductId = productId;
+        ProductName = productName;
+        Desc = desc;
+        Price = price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public product(String cateId) {
+        CateId = cateId;
     }
 
     public int getImage() {
@@ -44,43 +31,48 @@ public class product {
         this.image = image;
     }
 
-    public String getTensp() {
-        return tensp;
+    public String getProductId() {
+        return ProductId;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
+    public void setProductId(String productId) {
+        ProductId = productId;
     }
 
-    public int getLuuluong() {
-        return luuluong;
+    public String getProductName() {
+        return ProductName;
     }
 
-    public void setLuuluong(int luuluong) {
-        this.luuluong = luuluong;
-    }
-
-    public double getGia() {
-        return gia;
-    }
-
-    public void setGia(double gia) {
-        this.gia = gia;
+    public void setProductName(String productName) {
+        ProductName = productName;
     }
 
     public String getDesc() {
-        return desc;
+        return Desc;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        Desc = desc;
     }
 
-    public int getType() {
-        return type;
+    public double getPrice() {
+        return Price;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setPrice(double price) {
+        Price = price;
+    }
+
+    public product() {
+    }
+
+
+
+    public String getCateId() {
+        return CateId;
+    }
+
+    public void setCateId(String cateId) {
+        CateId = cateId;
     }
 }

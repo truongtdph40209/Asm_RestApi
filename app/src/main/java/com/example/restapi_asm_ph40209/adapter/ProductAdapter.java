@@ -51,9 +51,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
         }
 
         holder.img_product.setImageResource(pr.getImage());
-        holder.txt_tensp.setText(pr.getTensp());
-        holder.txt_luuluong.setText(pr.getLuuluong() + " mg");
-        holder.txt_gia.setText(String.valueOf(pr.getGia()));
+        holder.txt_tensp.setText(pr.getProductName());
+        holder.txt_gia.setText(String.valueOf(pr.getPrice()));
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -104,13 +103,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
 
         TextView tensp_chitiet = view.findViewById(R.id.tensp_chitiet);
         TextView gia_chitiet = view.findViewById(R.id.gia_chitiet);
-        TextView luuluong_chitiet = view.findViewById(R.id.luuluong_chitiet);
         TextView desc_chitiet = view.findViewById(R.id.desc_chitiet);
 
         img_chitiet.setImageResource(pr.getImage());
-        gia_chitiet.setText(String.valueOf(pr.getGia()));
-        luuluong_chitiet.setText(pr.getLuuluong() + " mg.");
-        tensp_chitiet.setText(pr.getTensp());
+        gia_chitiet.setText(String.valueOf(pr.getPrice()));
+        tensp_chitiet.setText(pr.getProductName());
         desc_chitiet.setText(pr.getDesc());
 
 
