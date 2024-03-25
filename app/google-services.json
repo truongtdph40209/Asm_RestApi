@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "89191088733",
+    "project_id": "asm-restapi",
+    "storage_bucket": "asm-restapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89191088733:android:f5f880b3ce9a38b11643b4",
+        "android_client_info": {
+          "package_name": "com.example.restapi_asm_ph40209"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ1zIdOVbgItxB1kWsKdcMPsLQfJjH8Sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

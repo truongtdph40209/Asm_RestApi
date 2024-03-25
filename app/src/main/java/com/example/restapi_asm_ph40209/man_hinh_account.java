@@ -30,14 +30,11 @@ public class man_hinh_account extends AppCompatActivity {
         btn_dangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = getSharedPreferences("my_prefs", MODE_PRIVATE).edit();
-                editor.clear();
-                editor.apply();
 
-                // Khởi chạy màn hình đăng nhập mới
+
                 Intent intent = new Intent(man_hinh_account.this, man_hinh_dang_nhap.class);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             }
         });
     }
