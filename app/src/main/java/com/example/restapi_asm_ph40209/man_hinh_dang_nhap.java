@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class man_hinh_dang_nhap extends AppCompatActivity {
     TextView txt_signin;
+    ImageButton img_gg;
     Button btn_login;
     EditText edt_email;
     EditText edt_pass;
@@ -29,6 +31,7 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email_dn);
         edt_pass = findViewById(R.id.edt_password_dn);
+        img_gg = findViewById(R.id.img_gg);
 
 
         txt_signin.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,13 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkdn();
+            }
+        });
+        img_gg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(man_hinh_dang_nhap.this, MainActivity.class));
+
             }
         });
 
