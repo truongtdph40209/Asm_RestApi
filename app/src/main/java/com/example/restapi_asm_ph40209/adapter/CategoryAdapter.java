@@ -15,13 +15,15 @@ import com.example.restapi_asm_ph40209.R;
 import com.example.restapi_asm_ph40209.model.category;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
-    ArrayList<category> ListItem;
+    List<category> ListItem;
     Context context;
 
-    public CategoryAdapter(ArrayList<category> listItem) {
+    public CategoryAdapter(List<category> listItem, Context context) {
         ListItem = listItem;
+        this.context = context;
     }
 
     @NonNull
@@ -35,8 +37,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txt_category.setText(ListItem.get(position).getCateName());
-
-
 
     }
 

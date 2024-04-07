@@ -1,5 +1,6 @@
 package com.example.restapi_asm_ph40209.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -9,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.restapi_asm_ph40209.R;
 import com.example.restapi_asm_ph40209.model.product;
 
@@ -25,6 +28,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
     private Context context;
 
     private List<product> listProduct;
+    int soluong = 0;
+
 
     public ProductAdapter(List<product> listProduct, Context context) {
         this.listProduct = listProduct;
@@ -43,16 +48,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHoder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHoder holder, @SuppressLint("RecyclerView") int position) {
         product pr = listProduct.get(position);
 
         if (pr == null){
             return;
         }
 
-        holder.img_product.setImageResource(pr.getImage());
+        Glide.with(holder.itemView.getContext())
+                        .load(pr.getImg())
+                                .placeholder(R.drawable.placeholder)
+                                        .error(R.drawable.placeholder)
+                                                .into(holder.img_product);
         holder.txt_tensp.setText(pr.getProductName());
-        holder.txt_gia.setText(String.valueOf(pr.getPrice()));
+        holder.txt_gia.setText(pr.getPrice() + "$");
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +92,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
             super(itemView);
             img_product = itemView.findViewById(R.id.img_product);
             txt_tensp = itemView.findViewById(R.id.txt_tensp);
-            txt_luuluong = itemView.findViewById(R.id.txt_luuluong);
+//            txt_luuluong = itemView.findViewById(R.id.txt_luuluong);
             txt_gia = itemView.findViewById(R.id.txt_gia);
         }
     }
@@ -99,18 +108,48 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
 
 
         ImageButton btn_dong = view.findViewById(R.id.btn_close);
+
         ImageView img_chitiet = view.findViewById(R.id.img_chitiet);
 
         TextView tensp_chitiet = view.findViewById(R.id.tensp_chitiet);
         TextView gia_chitiet = view.findViewById(R.id.gia_chitiet);
         TextView desc_chitiet = view.findViewById(R.id.desc_chitiet);
 
-        img_chitiet.setImageResource(pr.getImage());
-        gia_chitiet.setText(String.valueOf(pr.getPrice()));
+        Glide.with(context)
+                .load(pr.getImg())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(img_chitiet);
+        gia_chitiet.setText(pr.getPrice() + "$");
         tensp_chitiet.setText(pr.getProductName());
-        desc_chitiet.setText(pr.getDesc());
+        desc_chitiet.setText(pr.getDescription());
 
 
+
+        ImageButton img_tangsl = view.findViewById(R.id.img_tangsl);
+        ImageButton img_giamsl = view.findViewById(R.id.img_giamsl);
+        TextView txt_soluong = view.findViewById(R.id.txt_soluong);
+
+
+        img_tangsl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                soluong ++ ;
+                txt_soluong.setText(String.valueOf(soluong));
+            }
+        });
+
+        img_giamsl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (soluong > 1) {
+                    soluong--;
+                    txt_soluong.setText(String.valueOf(soluong));
+                } else {
+                    Toast.makeText(context, "Số lượng không thể nhỏ hơn 0", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

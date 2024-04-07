@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,22 @@ import android.widget.ImageView;
 import com.example.restapi_asm_ph40209.R;
 import com.example.restapi_asm_ph40209.adapter.CategoryAdapter;
 import com.example.restapi_asm_ph40209.adapter.ProductAdapter;
+import com.example.restapi_asm_ph40209.inteface.CategoryInterface;
+import com.example.restapi_asm_ph40209.inteface.ProductInterface;
 import com.example.restapi_asm_ph40209.man_hinh_account;
 import com.example.restapi_asm_ph40209.model.category;
 import com.example.restapi_asm_ph40209.model.product;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class home_frg extends Fragment {
@@ -44,6 +55,14 @@ public class home_frg extends Fragment {
     private RecyclerView rcv_product;
     private RecyclerView rcv_category;
 
+    static String BASE_URL = "http://192.168.1.4:3000/";
+
+    List<product> ds_product;
+    List<category> ds_cate;
+    CategoryAdapter categoryAdapter;
+
+    ProductAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,63 +77,94 @@ public class home_frg extends Fragment {
                 startActivity(new Intent(getContext(), man_hinh_account.class));
             }
         });
-
+        //get product
+        ds_product = new ArrayList<product>();
         rcv_product = view.findViewById(R.id.rcv_product);
-
-
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rcv_product.setLayoutManager(gridLayoutManager);
-
-        ProductAdapter adapter = new ProductAdapter(getListProduct(), getContext());
-
+        adapter = new ProductAdapter(ds_product, getContext());
         rcv_product.setAdapter(adapter);
 
-
+        //get category
+        ds_cate = new ArrayList<category>();
         rcv_category = view.findViewById(R.id.rcv_category);
         rcv_category.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-
-        CategoryAdapter categoryAdapter = new CategoryAdapter(getListItemcate());
+        categoryAdapter = new CategoryAdapter(ds_cate, getContext());
         rcv_category.setAdapter(categoryAdapter);
+
+        GetDanhSachProduct();
+        GetDanhSachCategory();
+
 
         return view;
     }
 
-    private List<product> getListProduct() {
-        List<product> listPr = new ArrayList<>();
 
-        listPr.add(new product(R.drawable.fruits1,"1" , "San pham 1", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
-        listPr.add(new product(R.drawable.fruits2,"2" , "San pham 2", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
-        listPr.add(new product(R.drawable.fruits3,"3" , "San pham 3", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
-        listPr.add(new product(R.drawable.fruits4,"4" , "San pham 4", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
+    void GetDanhSachProduct() {
 
-        listPr.add(new product(R.drawable.vegetables1,"5" , "San pham 5", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
-        listPr.add(new product(R.drawable.vegetables2,"6" , "San pham 6", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
-        listPr.add(new product(R.drawable.vegetables3,"7" , "San pham 7", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
-        listPr.add(new product(R.drawable.vegetables4,"8" , "San pham 8", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
+        Gson gson = new GsonBuilder().setLenient().create();
 
-        listPr.add(new product(R.drawable.bestdeal1,"9" , "San pham 9", "The orange is the fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus x sinensis, which is also called sweet orange, to distinguish it from the related Citrus aurantium ", 14.29));
-        listPr.add(new product(R.drawable.bestdeal2,"10" , "San pham 10", "Spinach (Spinacia oleracea) is a leafy green vegetable that originated in Persia. It belongs to the amaranth family and is related to beets and quinoa. What's more, it's considered very healthy", 15.29));
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
 
+        ProductInterface productInterface = retrofit.create(ProductInterface.class);
 
-        return listPr;
-    }
+        Call<List<product>> objCall = productInterface.lay_danh_sach();
 
-    private ArrayList<category> getListItemcate() {
-        ArrayList<category> listCate = new ArrayList<>();
-
-        listCate.add(new category("1", "All"));
-        listCate.add(new category("2", "Vegetables1"));
-        listCate.add(new category("3", "Fruits"));
-        listCate.add(new category("4", "Meats"));
-        listCate.add(new category("5", "Deals"));
-        listCate.add(new category("6", "Best Seller"));
-
-
-
-        return listCate;
+        objCall.enqueue(new Callback<List<product>>() {
+            @Override
+            public void onResponse(Call<List<product>> call, Response<List<product>> response) {
+                if (response.isSuccessful()){
+                    ds_product.clear();
+                    ds_product.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                }else {
+                    Log.d("zzzzzz", "onResponse: Kkong lay duoc ds");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<product>> call, Throwable throwable) {
+                Log.e("zzzzzzz", "onFailure: loi " + throwable.getMessage() );
+                throwable.printStackTrace();
+            }
+        });
 
     }
+    void GetDanhSachCategory() {
+
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        CategoryInterface categoryInterface = retrofit.create(CategoryInterface.class);
+
+        Call<List<category>> objCall = categoryInterface.lay_category();
+
+        objCall.enqueue(new Callback<List<category>>() {
+            @Override
+            public void onResponse(Call<List<category>> call, Response<List<category>> response) {
+                if (response.isSuccessful()){
+                    ds_cate.clear();
+                    ds_cate.addAll(response.body());
+                    categoryAdapter.notifyDataSetChanged();
+                }else {
+                    Log.d("zzzzzz", "onResponse: Kkong lay duoc ds");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<category>> call, Throwable throwable) {
+                Log.e("zzzzzzz", "onFailure: loi " + throwable.getMessage() );
+                throwable.printStackTrace();
+            }
+        });
+
+    }
+
 
 
 
