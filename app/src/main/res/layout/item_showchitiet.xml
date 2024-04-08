@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageButton
+                android:id="@+id/imgbtn_add_yeuthich"
                 android:padding="0dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

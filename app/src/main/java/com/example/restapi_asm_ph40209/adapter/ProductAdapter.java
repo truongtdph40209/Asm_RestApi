@@ -18,26 +18,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.restapi_asm_ph40209.R;
+import com.example.restapi_asm_ph40209.fragment.favourite_frg;
+import com.example.restapi_asm_ph40209.inteface.FavouriteInterface;
+import com.example.restapi_asm_ph40209.model.favourite;
 import com.example.restapi_asm_ph40209.model.product;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHoder>{
+    static String BASE_URL = "http://192.168.1.7:3000/";
+
     private Context context;
 
     private List<product> listProduct;
+    private List<favourite> favouriteList;
+    FavouriteAdapter favouriteAdapter;
+
     int soluong = 0;
 
 
-    public ProductAdapter(List<product> listProduct, Context context) {
-        this.listProduct = listProduct;
+    public ProductAdapter(Context context, List<product> listProduct, List<favourite> favouriteList ) {
         this.context = context;
-
+        this.listProduct = listProduct;
+        this.favouriteList = favouriteList;
     }
-
-
 
     @NonNull
     @Override
@@ -50,6 +65,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
     @Override
     public void onBindViewHolder(@NonNull ViewHoder holder, @SuppressLint("RecyclerView") int position) {
         product pr = listProduct.get(position);
+
+
 
         if (pr == null){
             return;
@@ -108,9 +125,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
 
 
         ImageButton btn_dong = view.findViewById(R.id.btn_close);
+        ImageButton imgbtn_add_yeuthich = view.findViewById(R.id.imgbtn_add_yeuthich);
+
 
         ImageView img_chitiet = view.findViewById(R.id.img_chitiet);
-
         TextView tensp_chitiet = view.findViewById(R.id.tensp_chitiet);
         TextView gia_chitiet = view.findViewById(R.id.gia_chitiet);
         TextView desc_chitiet = view.findViewById(R.id.desc_chitiet);
@@ -129,6 +147,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
         ImageButton img_tangsl = view.findViewById(R.id.img_tangsl);
         ImageButton img_giamsl = view.findViewById(R.id.img_giamsl);
         TextView txt_soluong = view.findViewById(R.id.txt_soluong);
+
+
+        imgbtn_add_yeuthich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                favourite yt = new favourite(pr.get_id(), pr.getProductName(), pr.getImg(), pr.getPrice());
+                add_favourite(yt);
+
+//                GetDanhSachFavourite();
+//                notifyDataSetChanged();
+            }
+        });
 
 
         img_tangsl.setOnClickListener(new View.OnClickListener() {
@@ -162,4 +193,39 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHode
             }
         });
     }
+
+
+
+    private void add_favourite(favourite objyt) {
+        Gson gson = new GsonBuilder().setLenient().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        FavouriteInterface favouriteInterface = retrofit.create(FavouriteInterface.class);
+
+        Call<favourite> objCall = favouriteInterface.them_yeu_thich(objyt);
+
+        objCall.enqueue(new Callback<favourite>() {
+            @Override
+            public void onResponse(Call<favourite> call, Response<favourite> response) {
+
+//                favouriteList.add(objyt);
+//                Log.e("log objyt", objyt.get_id() );
+//                favouriteAdapter = new FavouriteAdapter(favouriteList, context);
+//                favouriteAdapter.notifyDataSetChanged();
+                Toast.makeText(context, "Đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<favourite> call, Throwable throwable) {
+                Log.e("Error", "onFailure: " + throwable.getMessage());
+                Toast.makeText(context, "Có lỗi xảy ra, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 }

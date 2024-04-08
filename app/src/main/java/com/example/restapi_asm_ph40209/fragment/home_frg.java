@@ -22,6 +22,7 @@ import com.example.restapi_asm_ph40209.inteface.CategoryInterface;
 import com.example.restapi_asm_ph40209.inteface.ProductInterface;
 import com.example.restapi_asm_ph40209.man_hinh_account;
 import com.example.restapi_asm_ph40209.model.category;
+import com.example.restapi_asm_ph40209.model.favourite;
 import com.example.restapi_asm_ph40209.model.product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,9 +56,10 @@ public class home_frg extends Fragment {
     private RecyclerView rcv_product;
     private RecyclerView rcv_category;
 
-    static String BASE_URL = "http://192.168.1.4:3000/";
+    static String BASE_URL = "http://192.168.1.7:3000/";
 
     List<product> ds_product;
+    List<favourite> ds_favourite;
     List<category> ds_cate;
     CategoryAdapter categoryAdapter;
 
@@ -68,6 +70,7 @@ public class home_frg extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_frg, container, false);
+        ds_favourite = new ArrayList<favourite>();
 
         btn_account = view.findViewById(R.id.btn_account);
 
@@ -82,7 +85,7 @@ public class home_frg extends Fragment {
         rcv_product = view.findViewById(R.id.rcv_product);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rcv_product.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(ds_product, getContext());
+        adapter = new ProductAdapter(getContext(),ds_product, ds_favourite);
         rcv_product.setAdapter(adapter);
 
         //get category

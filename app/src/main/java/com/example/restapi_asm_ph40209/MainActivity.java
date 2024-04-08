@@ -88,12 +88,16 @@ public class MainActivity extends AppCompatActivity {
                     } else if (item.getItemId() == R.id.menu_favourite) {
                         viewPager2.setCurrentItem(3);
 
+
                         return true;
                     }
                     return false;
 
             }
         });
+
+
+
 
 
 
