@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.restapi_asm_ph40209.R;
 import com.example.restapi_asm_ph40209.adapter.CategoryAdapter;
 import com.example.restapi_asm_ph40209.adapter.FavouriteAdapter;
+import com.example.restapi_asm_ph40209.env.Port;
 import com.example.restapi_asm_ph40209.inteface.FavouriteInterface;
 import com.example.restapi_asm_ph40209.inteface.ProductInterface;
 import com.example.restapi_asm_ph40209.model.category;
@@ -47,7 +48,6 @@ public class favourite_frg extends Fragment {
 
     }
 
-    static String BASE_URL = "http://192.168.1.7:3000/";
     List<favourite> ds_favourite;
     FavouriteAdapter favouriteAdapter;
     private RecyclerView rcv_favourite;
@@ -75,7 +75,7 @@ public class favourite_frg extends Fragment {
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Port.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

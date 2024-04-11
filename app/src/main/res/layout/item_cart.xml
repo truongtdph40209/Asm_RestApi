@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:layout_marginTop="10dp"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_cart"
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:src="@drawable/placeholder"/>
+        <LinearLayout
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txt_tensp_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="San Pham 1"/>
+            <TextView
+                android:id="@+id/txt_giasp_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="14$"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/tangsl_cart"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_tang"
+                    android:padding="0dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/txt_soluong_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="@color/black"
+                    android:text="1"/>
+                <ImageButton
+                    android:id="@+id/giamsl_cart"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_giam"
+                    android:padding="0dp"
+                    android:background="@color/white"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_mua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#BEEA8B"
+            android:text="BUY"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.restapi_asm_ph40209.R;
+import com.example.restapi_asm_ph40209.env.Port;
 import com.example.restapi_asm_ph40209.inteface.FavouriteInterface;
 import com.example.restapi_asm_ph40209.model.favourite;
 import com.example.restapi_asm_ph40209.model.product;
@@ -34,7 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
     List<favourite> listyt;
     Context context;
-    static String BASE_URL = "http://192.168.1.7:3000/";
 
 
     public FavouriteAdapter(List<favourite> list, Context context) {
@@ -98,7 +98,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
 
     private void DeleteFavourite(favourite favourite) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Port.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -130,7 +130,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Port.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

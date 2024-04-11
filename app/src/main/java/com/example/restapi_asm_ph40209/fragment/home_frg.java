@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import com.example.restapi_asm_ph40209.R;
 import com.example.restapi_asm_ph40209.adapter.CategoryAdapter;
 import com.example.restapi_asm_ph40209.adapter.ProductAdapter;
+import com.example.restapi_asm_ph40209.env.Port;
 import com.example.restapi_asm_ph40209.inteface.CategoryInterface;
 import com.example.restapi_asm_ph40209.inteface.ProductInterface;
 import com.example.restapi_asm_ph40209.man_hinh_account;
@@ -56,7 +57,6 @@ public class home_frg extends Fragment {
     private RecyclerView rcv_product;
     private RecyclerView rcv_category;
 
-    static String BASE_URL = "http://192.168.1.7:3000/";
 
     List<product> ds_product;
     List<favourite> ds_favourite;
@@ -108,7 +108,7 @@ public class home_frg extends Fragment {
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Port.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -140,7 +140,7 @@ public class home_frg extends Fragment {
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Port.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

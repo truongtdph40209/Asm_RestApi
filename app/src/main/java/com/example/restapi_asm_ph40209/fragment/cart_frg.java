@@ -3,64 +3,107 @@ package com.example.restapi_asm_ph40209.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.restapi_asm_ph40209.R;
+import com.example.restapi_asm_ph40209.adapter.CartAdapter;
+import com.example.restapi_asm_ph40209.adapter.FavouriteAdapter;
+import com.example.restapi_asm_ph40209.env.Port;
+import com.example.restapi_asm_ph40209.inteface.CartInterface;
+import com.example.restapi_asm_ph40209.inteface.FavouriteInterface;
+import com.example.restapi_asm_ph40209.model.cart;
+import com.example.restapi_asm_ph40209.model.favourite;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link cart_frg#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
 public class cart_frg extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public cart_frg() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment cart_frg.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static cart_frg newInstance(String param1, String param2) {
-        cart_frg fragment = new cart_frg();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
+
+    List<cart> ds_cart;
+    CartAdapter cartAdapter;
+    private RecyclerView rcv_cart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart_frg, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart_frg, container, false);
+
+        ds_cart = new ArrayList<cart>();
+        rcv_cart = view.findViewById(R.id.rcv_cart);
+        rcv_cart.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        cartAdapter = new CartAdapter( getContext(),ds_cart);
+        rcv_cart.setAdapter(cartAdapter);
+
+        GetDanhSachCart();
+        return view;
+    }
+
+    void GetDanhSachCart() {
+
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Port.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        CartInterface cartInterface = retrofit.create(CartInterface.class);
+
+        Call<List<cart>> objCall = cartInterface.lay_danh_sach();
+
+        objCall.enqueue(new Callback<List<cart>>() {
+            @Override
+            public void onResponse(Call<List<cart>> call, Response<List<cart>> response) {
+                if (response.isSuccessful()){
+                    ds_cart.clear();
+                    ds_cart.addAll(response.body());
+                    cartAdapter.notifyDataSetChanged();
+                }else {
+                    Log.d("zzzzzz", "onResponse: Kkong lay duoc ds");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<cart>> call, Throwable throwable) {
+                Log.e("zzzzzzz", "onFailure: loi " + throwable.getMessage() );
+                throwable.printStackTrace();
+            }
+        });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GetDanhSachCart();
     }
 }

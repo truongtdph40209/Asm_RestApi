@@ -1,5 +1,5 @@
-package com.example.restapi_asm_ph40209;
+package com.example.restapi_asm_ph40209.env;
 
-public interface port {
-    
+public interface Port {
+    String BASE_URL = "http://192.168.43.174:3000/";
 }
